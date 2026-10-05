@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: fct_sales
+    description: "Tabela fato de vendas consolidada"
+    columns:
+      - name: event_time
+        tests:
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+      - name: price
+        tests:
+          - not_null

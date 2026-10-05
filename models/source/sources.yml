@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: globalstream_raw
+    description: "Camada crua do Data Warehouse da GlobalStream Retail no BigQuery"
+    database: globalstream-retail-506523
+    schema: globalstream_retail_dw
+    
+    tables:
+      - name: fato_eventos
+        description: "Tabela bruta com os 50k eventos de e-commerce"
+        columns:
+          - name: event_time
+            description: "Timestamp do evento"
+            tests:
+              - not_null
+          - name: event_type
+            description: "Tipo de interação"
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['view', 'cart', 'purchase', 'remove_from_cart']
